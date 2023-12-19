@@ -1,16 +1,19 @@
 package jmetal;
 
-import jmetal.core.*;
+import jmetal.core.Problem;
+import jmetal.core.Solution;
+import jmetal.core.Variable;
 import jmetal.encodings.solutionType.RealSolutionType;
 import jmetal.util.JMException;
 
-public class Scalaire extends Problem {
+public class pareto extends Problem {
 
-    public Scalaire(String solutionType, int nombres) {
-        super.numberOfObjectives_ = 1;
+
+    public pareto(String solutionType, int nombres) {
+        super.numberOfObjectives_ = 2;
         super.numberOfConstraints_ = 0;
         super.numberOfVariables_ = nombres;
-        super.problemName_ = "jmetal.Scalaire";
+        super.problemName_ = "jmetal.pareto";
 
         if (solutionType.compareTo("Real") == 0) {
             this.solutionType_ = new RealSolutionType(this);
@@ -28,13 +31,14 @@ public class Scalaire extends Problem {
         }
     }
 
+
     @Override
     public void evaluate(Solution solution) throws JMException {
         Variable[] decisionVariables = solution.getDecisionVariables();
 
         double [] x = new double[numberOfVariables_];
 
-        for (int i = 1 ; i < numberOfVariables_ ; i++) {
+        for (int i = 0 ; i < numberOfVariables_ ; i++) {
             x[i] = decisionVariables[i].getValue();
         }
 
@@ -49,9 +53,9 @@ public class Scalaire extends Problem {
         g = 1 + 9 * g / (numberOfVariables_ - 1);
         f2 = g * (1 - Math.sqrt(f1/g));
 
-
-
         solution.setObjective(0, f1);
         solution.setObjective(1, f2);
+
+
     }
 }

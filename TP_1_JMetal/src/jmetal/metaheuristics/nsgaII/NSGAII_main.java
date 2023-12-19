@@ -21,6 +21,7 @@
 
 package jmetal.metaheuristics.nsgaII;
 
+
 import jmetal.core.Algorithm;
 import jmetal.core.Operator;
 import jmetal.core.Problem;
@@ -28,6 +29,7 @@ import jmetal.core.SolutionSet;
 import jmetal.operators.crossover.CrossoverFactory;
 import jmetal.operators.mutation.MutationFactory;
 import jmetal.operators.selection.SelectionFactory;
+import jmetal.pareto;
 import jmetal.problems.ProblemFactory;
 import jmetal.problems.ZDT.ZDT3;
 import jmetal.qualityIndicator.QualityIndicator;
@@ -91,17 +93,18 @@ public class NSGAII_main {
     } // if
     else if (args.length == 2) {
       Object [] params = {"Real"};
-      problem = (new ProblemFactory()).getProblem(args[0],params);
+      problem = new pareto("Real", 30);
       indicators = new QualityIndicator(problem, args[1]) ;
     } // if
     else { // Default problem
       //problem = new Kursawe("Real", 3);
       //problem = new Kursawe("BinaryReal", 3);
       //problem = new Water("Real");
-      problem = new ZDT3("ArrayReal", 30);
+      //problem = new ZDT3("ArrayReal", 30);
       //problem = new ConstrEx("Real");
       //problem = new DTLZ1("Real");
       //problem = new OKA2("Real") ;
+      problem = new pareto("Real", 30);
     } // else
     
     algorithm = new NSGAII(problem);
