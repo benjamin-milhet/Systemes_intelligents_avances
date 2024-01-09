@@ -37,7 +37,6 @@ public class Scalaire extends Problem {
         for (int i = 1 ; i < numberOfVariables_ ; i++) {
             x[i] = decisionVariables[i].getValue();
         }
-
         double f1 = x[0];
         double f2 = 0.0;
         double g = 0.0;
@@ -49,9 +48,11 @@ public class Scalaire extends Problem {
         g = 1 + 9 * g / (numberOfVariables_ - 1);
         f2 = g * (1 - Math.sqrt(f1/g));
 
+        double a =1;
+        double b = 1;
 
+        double F = a * f1 + b * f2;
+        solution.setObjective(0, F);
 
-        solution.setObjective(0, f1);
-        solution.setObjective(1, f2);
     }
 }
