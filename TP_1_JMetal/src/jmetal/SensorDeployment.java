@@ -100,21 +100,22 @@ public class SensorDeployment extends Problem {
 
 
     public void lireFichierEtInitialiser(String cheminFichier) {
-        ArrayList<int[]> listeTemporaire = new ArrayList<>();
-        try {
-            File fichier = new File(cheminFichier);
-            Scanner scanner = new Scanner(fichier);
-            while (scanner.hasNextLine()) {
-                String[] parts = scanner.nextLine().split(",");
-                int x = Integer.parseInt(parts[0]);
-                int y = Integer.parseInt(parts[1]);
-                listeTemporaire.add(new int[]{x, y});
-            }
-            scanner.close();
+        ArrayList<int[]> listeCible = new ArrayList<>(); // Liste contenant les coordonnées des cibles
 
-            this.coordonneesCibles = new int[listeTemporaire.size()][2];
-            for (int i = 0; i < listeTemporaire.size(); i++) {
-                this.coordonneesCibles[i] = listeTemporaire.get(i);
+        try {
+            File fichier = new File(cheminFichier); // Créer un fichier à partir du chemin
+            Scanner scanner = new Scanner(fichier); // Créer un scanner à partir du fichier
+            while (scanner.hasNextLine()) { // Parcourir les lignes du fichier
+                String[] parts = scanner.nextLine().split(","); // Récupérer les coordonnées de la cible (x, y) séparées par une virgule
+                int x = Integer.parseInt(parts[0]); // Récupérer la coordonnée x
+                int y = Integer.parseInt(parts[1]); // Récupérer la coordonnée y
+                listeCible.add(new int[]{x, y}); // Ajouter les coordonnées de la cible à la liste
+            }
+            scanner.close(); // Fermer le scanner
+
+            this.coordonneesCibles = new int[listeCible.size()][2]; // Initialiser le tableau contenant les coordonnées des cibles
+            for (int i = 0; i < listeCible.size(); i++) { // Parcourir la liste contenant les coordonnées des cibles
+                this.coordonneesCibles[i] = listeCible.get(i); // Ajouter les coordonnées de la cible au tableau
             }
         } catch (FileNotFoundException e) {
             System.err.println("Fichier non trouvé: " + e.getMessage());

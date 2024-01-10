@@ -41,11 +41,9 @@ public class Pareto extends Problem {
             x[i] = decisionVariables[i].getValue();
         }
 
-        double f1 = x[0];
-        double f2 = 0.0;
-        double g = 0;
+        double f1 = x[0], f2 = 0.0, g = 0;
 
-        for (int i = 1 ; i < numberOfVariables_ ; i++) {
+        for (int i = 0 ; i < numberOfVariables_ ; i++) {
             g += x[i];
         }
 
