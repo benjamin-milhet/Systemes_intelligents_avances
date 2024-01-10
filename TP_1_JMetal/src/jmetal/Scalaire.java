@@ -38,18 +38,16 @@ public class Scalaire extends Problem {
             x[i] = decisionVariables[i].getValue();
         }
 
-        double f1 = x[0];
-        double f2 = 0.0;
-        double g = 0.0;
+        double f1 = x[0], f2 = 0.0, g = 0.0;
 
         for (int i = 1 ; i < numberOfVariables_ ; i++) {
             g += x[i];
         }
 
         g = 1 + 9 * g / (numberOfVariables_ - 1);
-        f2 = g * (1 - Math.sqrt(f1/g));
+        f2 = g * Math.floor(1 - Math.sqrt(f1/g));
 
-        double alpha = 1.0, beta = 1.0;
+        double alpha = 1, beta = 0.5;
         double F = alpha * f1 + beta * f2;
 
         solution.setObjective(0, F);

@@ -29,7 +29,6 @@ public class Pareto extends Problem {
             super.lowerLimit_[i] = 0.0;
             super.upperLimit_[i] = 1.0;
         }
-
     }
 
     @Override
@@ -38,7 +37,7 @@ public class Pareto extends Problem {
 
         double [] x = new double[numberOfVariables_];
 
-        for (int i = 1 ; i < numberOfVariables_ ; i++) {
+        for (int i = 0 ; i < numberOfVariables_ ; i++) {
             x[i] = decisionVariables[i].getValue();
         }
 
