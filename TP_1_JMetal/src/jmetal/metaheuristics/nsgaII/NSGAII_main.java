@@ -22,6 +22,7 @@
 package jmetal.metaheuristics.nsgaII;
 
 import jmetal.Pareto;
+import jmetal.SensorDeployment;
 import jmetal.core.Algorithm;
 import jmetal.core.Operator;
 import jmetal.core.Problem;
@@ -88,13 +89,15 @@ public class NSGAII_main {
     indicators = null ;
     if (args.length == 1) {
       Object [] params = {"Real"};
-      //problem = (new ProblemFactory()).getProblem(args[0],params);
-      problem = new Pareto("Real", 30);
+      problem = (new ProblemFactory()).getProblem(args[0],params);
+      //problem = new Pareto("Real", 30);
+      //problem = null;
     } // if
     else if (args.length == 2) {
       Object [] params = {"Real"};
-      //problem = (new ProblemFactory()).getProblem(args[0],params);
-      problem = new Pareto("Real", 30);
+      problem = (new ProblemFactory()).getProblem(args[0],params);
+      //problem = new Pareto("Real", 30);
+      //problem = null;
       indicators = new QualityIndicator(problem, args[1]) ;
     } // if
     else { // Default problem
@@ -106,7 +109,8 @@ public class NSGAII_main {
       //problem = new DTLZ1("Real");
       //problem = new OKA2("Real") ;
       System.out.println("Inst");
-      problem = new Pareto("Real", 30);
+      //problem = new Pareto("Real", 30);
+      problem = new SensorDeployment("Real", 4, 10, 100);
     } // else
     
     algorithm = new NSGAII(problem);

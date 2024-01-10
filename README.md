@@ -1,1 +1,1 @@
-# Syst-mes_intelligents_avanc-s
+# Systèmes_intelligents_avancés
